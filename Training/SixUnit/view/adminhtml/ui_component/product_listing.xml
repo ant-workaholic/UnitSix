@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <container name="listing_top">
+        <filters name="listing_filters">
+            <filterSelect name="conf_filter">
+                <argument name="optionsProvider" xsi:type="configurableObject">
+                    <argument name="class" xsi:type="string">Training\SixUnit\Ui\Component\Listing\Column\Options</argument>
+                </argument>
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="provider" xsi:type="string">product_listing.product_listing.listing_top.listing_filters</item>
+                        <item name="dataScope" xsi:type="string">conf_filter</item>
+                        <item name="label" xsi:type="string" translate="true">Configurable options</item>
+                    </item>
+                </argument>
+            </filterSelect>
+        </filters>
+    </container>
+</listing>

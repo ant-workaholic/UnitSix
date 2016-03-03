@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Training\Test\Model\Config\ConfigInterface"
+                type="Training\Test\Model\Config" />
+    <!--<type name="Magento\Catalog\Model\Product">
+        <plugin name="magento-catalog-product-plugin"
+                type="Training\Test\Model\Product" sortOrder="10"/>
+    </type>-->
+    <!--<preference for="Magento\Catalog\Model\Product"
+            type="Training\Test\Model\Testproduct"/>
+    <type name="Magento\Framework\App\Router\NoRouteHandlerList">
+        <arguments>
+            <argument name="handlerClassesList" xsi:type="array">
+                <item name="backend" xsi:type="array">
+                    <item name="class" xsi:type="string">Training\Test\Controller\Router\NoRouteHandler</item>
+                    <item name="sortOrder" xsi:type="string">200</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Controller\Product\View">
+        <plugin name="magento-catalog-product-plugin"
+                type="Training\Test\Plugin\Controller\Product\View" sortOrder="10"/>
+    </type> -->
+    <!--<preference for="Magento\Catalog\Controller\Product\View"
+                type="Training\Test\Controller\Product\View"/> -->
+</config>
