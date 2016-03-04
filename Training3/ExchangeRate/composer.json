@@ -1,5 +1,5 @@
 {
-    "name": "training/ordercontroller",
+    "name": "training/test",
     "description": "Magento 2 training",
     "require": {
         "php": "~5.5.0|~5.6.0|~7.0.0",
@@ -16,7 +16,7 @@
             "registration.php"
         ],
         "psr-4": {
-            "Training2\\OrderController\\": ""
+            "Training3\\ExchangeRate\\": ""
         }
     }
 }

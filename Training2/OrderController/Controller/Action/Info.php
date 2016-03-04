@@ -1,11 +1,16 @@
 <?php
-namespace Training2\OrderCintroller\Controller\Action;
+namespace Training2\OrderController\Controller\Action;
 
-use Magento\Framework\App\Action\AbstractAction;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Sales\Model\OrderFactory;
 
+/**
+ * Retrieve information about requested order
+ * Otherwise, retrieve information message.
+ *
+ * @package Training2\OrderController\Controller\Action
+ */
 class Info extends \Magento\Framework\App\Action\Action
 {
     /**
@@ -34,21 +39,30 @@ class Info extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         $orderId = $this->getRequest()->getParam('order_id');
+        $layout = $this->_view->getLayout();
+
+        /** @var \Magento\Framework\View\Element\Text $block */
+        $block = $layout->createBlock('Magento\Framework\View\Element\Text');
         if ($orderId) {
             /** @var \Magento\Sales\Model\Order $order */
             $order = $this->orderFactory
                 ->create()
                 ->load($orderId);
-            $result = $this->getOrderInfo($order);
-            var_dump($result);
-            exit;
+            if ($order->getId()) {
+                $result = $this->_toJson($this->getOrderInfo($order));
+                $block->setText($result);
+                $this->getResponse()->appendBody($block->toHtml());
+                return;
+            }
         }
-        echo "test";
-        exit;
+        $block->setText(__('Your order wasn\'t found, please specify another order id.'));
+        $this->getResponse()->appendBody($block->toHtml());
     }
 
     /**
-     * @param $order
+     * Process order info, convert it to array.
+     *
+     * @param \Magento\Sales\Model\Order $order
      * @return array
      */
     protected function getOrderInfo($order)
@@ -59,11 +73,21 @@ class Info extends \Magento\Framework\App\Action\Action
         $resultData['total_invoiced'] = $order->getTotalInvoiced();
         $items = [];
         foreach($order->getItems() as $item) {
-            $items[]['sku'] = $item->getSku();
-            $items[]['item_id'] = $item->getItemId();
-            $items[]['price'] = $item->getPrice();
+            $items[$item->getItemId()]['sku'] = $item->getSku();
+            $items[$item->getItemId()]['price'] = $item->getPrice();
         }
         $resultData['items'] = $items;
         return $resultData;
+    }
+
+    /**
+     * Convert data to json format
+     *
+     * @param $param
+     * @return string
+     */
+    protected function _toJson($param)
+    {
+        return json_encode($param);
     }
 }
