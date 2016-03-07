@@ -17,8 +17,9 @@ class OrderInfo extends \Magento\Framework\View\Element\Template
 
     /**
      * @param Template\Context $context
-     * @param array            $data
-     * @param OrderFactory     $orderFactory
+     * @param array $data
+     * @param OrderFactory $orderFactory
+     * @param \Magento\Framework\Registry $coreRegistry
      */
     public function __construct(
         Template\Context $context,

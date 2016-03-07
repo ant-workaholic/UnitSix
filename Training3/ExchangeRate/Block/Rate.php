@@ -30,13 +30,10 @@ class Rate extends \Magento\Framework\View\Element\Template
    public function getRateEuro()
    {
        $data = [];
-       if (!isset($data['service_url'])) {
-           $data['service_url'] = 'http://api.fixer.io/latest?base=USD';
-           if ($this->_exchangeRequest->sendRequest($data)) {
-               $result = $this->_exchangeRequest->getResponseData();
-               return $result->rates->EUR;
-           }
-       }
-       return '';
+       $data['service_url'] = 'http://api.fixer.io/latest?base=USD';
+       $this->_exchangeRequest->sendRequest($data);
+       $result = $this->_exchangeRequest->getResponseData();
+       $res = $result->rates->EUR;
+       return $res;
    }
 }

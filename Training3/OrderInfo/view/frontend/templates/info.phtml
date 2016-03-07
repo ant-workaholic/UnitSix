@@ -1,0 +1,9 @@
+<?php $orderInfo = $this->getOrderInfo(); ?>
+<div class="order-info">
+    <ul>
+        <li><?php echo __('Order status is:') ?><?php echo $orderInfo['status']; ?></li>
+        <li><?php echo __('Order total:');?><?php echo $orderInfo['total']; ?></li>
+        <li><?php echo __('Order total invoiced:'); ?></li>
+        <li><?php echo __('Items info'); ?></li>
+    </ul>
+</div>

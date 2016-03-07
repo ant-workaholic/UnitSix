@@ -55,8 +55,6 @@ class Info extends \Magento\Framework\App\Action\Action
                 return;
             }
         }
-        $block->setText(__('Your order wasn\'t found, please specify another order id.'));
-        $this->getResponse()->appendBody($block->toHtml());
     }
 
     /**
