@@ -27,7 +27,7 @@ class UpgradeSchema implements  UpgradeSchemaInterface
          * Create table 'training_comment'
          */
         if ($context->getVersion()
-            && version_compare($context->getVersion(), '0.0.6') < 0
+            && version_compare($context->getVersion(), '0.0.7') < 0
         ) {
             $table = $installer->getConnection()->newTable(
                 $installer->getTable('training4_vendor2product')

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Training4\Vendor\Api\Data\VendorInterface"
+                type="Training4\Vendor\Model\Vendor"/>
+    <preference for="Training4\Vendor\Api\Data\ProductInterface"
+                type="Training4\Vendor\Model\Product"/>
+    <preference for="Training4\Vendor\Api\VendorRepositoryInterface"
+                type="Training4\Vendor\Model\VendorRepository"/>
+</config>
