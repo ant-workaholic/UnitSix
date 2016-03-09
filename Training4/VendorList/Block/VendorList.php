@@ -1,15 +1,8 @@
 <?php
-namespace Training4\Vendor\Block\Product;
-
+namespace Training4\VendorList\Block;
 
 use Magento\Framework\View\Element\Template;
-
-/**
- * Class Vendor
- *
- * @package Training4\Vendor\Block\Product
- */
-class Vendor extends \Magento\Framework\View\Element\Template
+class VendorList extends \Magento\Framework\View\Element\Template
 {
     /**
      * @var \Training4\Vendor\Model\VendorRepositoryFactory
@@ -61,26 +54,14 @@ class Vendor extends \Magento\Framework\View\Element\Template
     {
         $vendors = [];
         /** @var \Magento\Catalog\Model\Product $product */
-        $product = $this->_coreRegistry->registry('current_product');
-
-        if ($product && $product->getId()) {
-            $productId = $product->getId();
-            /** @var \Training4\Vendor\Model\VendorRepository $repository */
-            $repository = $this->_repositoryFactory
-                ->create();
-            // Add product id filter
-            $filters[] = $this->_filterBuilder
-                ->setField('product_id')
-                ->setConditionType('eq')
-                ->setValue($productId)
-                ->create();
-            //Set filter to search criteria
-            $searchCriteria = $this->_searchCriteriaBuilder
-                ->addFilters($filters)
-                ->create();
-            //Pass order criteria with filters to the repository
-            $vendors = $repository->getList($searchCriteria)->getItems();
-        }
+        /** @var \Training4\Vendor\Model\VendorRepository $repository */
+        $repository = $this->_repositoryFactory
+            ->create();
+        //Set filter to search criteria
+        $searchCriteria = $this->_searchCriteriaBuilder
+            ->create();
+        //Pass order criteria with filters to the repository
+        $vendors = $repository->getList($searchCriteria)->getItems();
         return $vendors;
     }
 }

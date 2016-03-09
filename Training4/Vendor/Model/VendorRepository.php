@@ -12,16 +12,6 @@ class VendorRepository implements VendorRepositoryInterface
     protected $_collectionFactory;
 
     /**
-     * @var DataObjectHelper
-     */
-    protected $dataObjectHelper;
-
-    /**
-     * @var DataObjectProcessor
-     */
-    protected $dataObjectProcessor;
-
-    /**
      * @var \Training4\Vendor\Api\Data\VendorInterfaceFactory
      */
     protected $_vendorInterfaceFactory;
@@ -33,14 +23,10 @@ class VendorRepository implements VendorRepositoryInterface
 
     function __construct(
         \Training4\Vendor\Model\ResourceModel\Vendor\CollectionFactory $collectionFactory,
-        DataObjectHelper $dataObjectHelper,
-        DataObjectProcessor $dataObjectProcessor,
         \Training4\Vendor\Api\Data\VendorSearchResultsInterfaceFactory $searchResultsInterface,
         \Training4\Vendor\Api\Data\VendorInterfaceFactory $vendorInterfaceFactory
     ) {
         $this->_collectionFactory = $collectionFactory;
-        $this->dataObjectHelper = $dataObjectHelper;
-        $this->dataObjectProcessor = $dataObjectProcessor;
         $this->_searchCriteriaResultFactory = $searchResultsInterface;
         $this->_vendorInterfaceFactory = $vendorInterfaceFactory;
     }
@@ -55,8 +41,6 @@ class VendorRepository implements VendorRepositoryInterface
         $searchResults->setSearchCriteria($searchCriteria);
 
         $collection = $this->_collectionFactory->create();
-        echo $collection->getSize();
-        exit;
         foreach ($searchCriteria->getFilterGroups() as $filterGroup) {
             foreach ($filterGroup->getFilters() as $filter) {
                 $condition = $filter->getConditionType() ?: 'eq';
@@ -73,23 +57,12 @@ class VendorRepository implements VendorRepositoryInterface
                 );
             }
         }
-
-
-        $vendors = [];
-        /** @var Vendor $vendorModel */
-        foreach ($collection as $vendorModel) {
-            $vendorData = $this->_vendorInterfaceFactory->create();
-            $this->dataObjectHelper->populateWithArray(
-                $vendorData,
-                $vendorModel->getData(),
-                'Training4\Vendor\Api\Data\VendorInterface'
-            );
-            $blocks[] = $this->dataObjectProcessor->buildOutputDataArray(
-                $vendorData,
-                'Training4\Vendor\Api\Data\VendorInterface'
-            );
-        }
-        $searchResults->setItems($vendors);
+        $collection->setCurPage($searchCriteria->getCurrentPage());
+        $collection->setPageSize($searchCriteria->getPageSize());
+        $collection->load();
+        $searchResults->setItems($collection->getItems());
+        $searchResults->setTotalCount($collection->getSize());
+        $searchResults->setSearchCriteria($searchCriteria);
         return $searchResults;
     }
 }
