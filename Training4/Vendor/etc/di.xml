@@ -13,5 +13,5 @@
     <preference for="Training4\Vendor\Api\VendorRepositoryInterface"
                 type="Training4\Vendor\Model\VendorRepository"/>
     <preference for="Training4\Vendor\Api\Data\VendorSearchResultsInterface"
-                type="Magento\Framework\Api\SearchResults" />
+                type="Magento\Framework\Api\SearchResults"/>
 </config>

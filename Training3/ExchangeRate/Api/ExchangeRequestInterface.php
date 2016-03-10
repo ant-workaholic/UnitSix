@@ -12,10 +12,9 @@ interface ExchangeRequestInterface
     const RESPONSE = 'response';
 
     /**
-     * @param $data
      * @return mixed
      */
-    public function sendRequest($data);
+    public function sendRequest();
 
     /**
      * @return mixed

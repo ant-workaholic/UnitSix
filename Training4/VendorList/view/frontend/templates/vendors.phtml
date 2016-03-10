@@ -1,1 +1,10 @@
-<?php echo $this->getChildHtml('product_list'); ?>
+<?php echo $this->getChildHtml('toolbar'); ?>
+<?php $vendors = $this->getProductVendors(); ?>
+<?php if ($vendors): ?>
+    <ul>
+    <?php foreach($vendors as $vendor): ?>
+        <li><h2><a href="<?php echo $this->getUrl('*/*/view', array('id' => $vendor->getId())); ?>"><?php echo $vendor->getName(); ?></a></h2></li>
+    <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+<?php echo $this->getChildHtml('toolbar'); ?>

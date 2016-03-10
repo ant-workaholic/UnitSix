@@ -1,21 +1,25 @@
 <?php
-namespace Training4\VendorList\Controller\Info;
+namespace Training5\VendorRepository\Controller\Test;
 
+use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\App\ResponseInterface;
 
 /**
- * Class Index
- * @package Training4\VendorList\Controller\Info
+ * Class Vendors
+ * @package Training5\VendorRepository\Controller\Test
  */
-class Index extends \Magento\Framework\App\Action\Action
+class Vendors extends \Magento\Framework\App\Action\Action
 {
     /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
     protected $_pageFactory;
 
+    /**
+     * @param Context $context
+     * @param PageFactory $pageFactory
+     */
     public function __construct(Context $context, PageFactory $pageFactory)
     {
         $this->_pageFactory = $pageFactory;
@@ -33,4 +37,5 @@ class Index extends \Magento\Framework\App\Action\Action
         $result = $this->_pageFactory->create();
         return $result;
     }
+
 }

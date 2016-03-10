@@ -24,6 +24,7 @@ class UpgradeData implements UpgradeDataInterface
 
     /**
      * @param \Training4\Vendor\Api\Data\VendorInterfaceFactory $vendorFactory
+     * @param \Training4\Vendor\Api\Data\ProductInterfaceFactory $productFactory
      */
     function __construct(
         \Training4\Vendor\Api\Data\VendorInterfaceFactory $vendorFactory,

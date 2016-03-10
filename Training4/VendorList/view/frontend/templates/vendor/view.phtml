@@ -1,0 +1,8 @@
+<h1><?php echo $this->getVendorName(); ?></h1>
+<?php $productCollection = $this->getRelatedProductsCollection(); ?>
+<?php /** @var $product \Magento\Catalog\Model\Product */ ?>
+<ul>
+    <?php foreach($productCollection as $product): ?>
+        <li><?php echo $product->getName(); ?></li>
+    <?php endforeach; ?>
+</ul>

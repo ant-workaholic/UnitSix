@@ -31,7 +31,10 @@ class BeforeResponse implements ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-
+        $data['remote_ip'] = $this->_remoteAddress->getRemoteAddress(true);
+        $data['remote_url'] = 'http://freegeoip.net/json/';
+        $response = $this->_freeGeoIp->sendRequest($data);
+        $response = json_decode($response);
     }
 
 }

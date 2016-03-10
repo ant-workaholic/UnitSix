@@ -12,23 +12,25 @@ class ExchangeRateRequest extends
     \Magento\Framework\Api\AbstractSimpleObject
     implements ExchangeRequestInterface
 {
+    const DEFAULT_USD_URL = 'http://api.fixer.io/latest?base=USD';
+
     /**
-     * Send request
-     *
-     * @param $data
-     * @return bool
+     * @return bool|mixed
      */
-    public function sendRequest($data)
+    public function sendRequest()
     {
-        $url = $data['service_url'];
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch,CURLOPT_URL, $url);
+        curl_setopt($ch,CURLOPT_URL, self::DEFAULT_USD_URL);
         curl_setopt($ch,CURLOPT_CONNECTTIMEOUT, 5);
         $result = curl_exec($ch);
         if ($result) {
             $decoded = json_decode($result);
-            $this->setData(self::RESPONSE, $decoded);
+            if ($decoded && $decoded->rates->EUR) {
+                $this->setData(self::RESPONSE, $decoded);
+            } else {
+                $this->setData(self::RESPONSE, 'error');
+            }
             return true;
         }
         return false;
