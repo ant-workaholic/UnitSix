@@ -1,4 +1,5 @@
 <?php
+namespace Training4\Vendor\Setup;
 
 use Magento\Framework\Setup\InstallDataInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
@@ -20,24 +21,25 @@ class InstallData implements  InstallDataInterface
     protected $_productFactory;
 
     /**
-     * @var Magento\Catalog\Model\ProductRepository
+     * @var \Magento\Catalog\Model\ProductRepository
      */
-    protected $_productRepository;
+    protected $_productCatalogFactory;
 
     /**
      * @param \Training4\Vendor\Api\Data\VendorInterfaceFactory $vendorFactory
      * @param \Training4\Vendor\Api\Data\ProductInterfaceFactory $productFactory
-     * @param \Magento\Catalog\Model\ProductRepository $productRepository
+     * @param \Magento\Catalog\Model\ProductRepositoryFactory $productRepository
      */
     function __construct(
         \Training4\Vendor\Api\Data\VendorInterfaceFactory $vendorFactory,
         \Training4\Vendor\Api\Data\ProductInterfaceFactory $productFactory,
-        \Magento\Catalog\Model\ProductRepository $productRepository
+        \Magento\Catalog\Model\ProductFactory $productCatalogFactory
     ) {
         $this->_vendorFactory = $vendorFactory;
         $this->_productFactory = $productFactory;
-        $this->_productRepository = $productRepository;
+        $this->_productCatalogFactory = $productCatalogFactory;
     }
+
     /**
      * Installs data for a module
      *
@@ -47,6 +49,9 @@ class InstallData implements  InstallDataInterface
      */
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
+        $setup->startSetup();
+        $productModel = $this->_productCatalogFactory->create();
+
         $this->_vendorFactory
             ->create()
             ->setName('Adidas')
@@ -72,69 +77,46 @@ class InstallData implements  InstallDataInterface
             ->setName('PUMA')
             ->save();
 
-        /// Add link vendor to product
-        $repository = $this->_productRepository->create();
+        $this->_productFactory
+            ->create()
+            ->setProductId(1)
+            ->setVendorId(1)
+            ->save();
 
-        $product = $repository->getById(1);
-        if ($product && $product->getId()) {
-            $this->_productFactory
-                ->create()
-                ->setProductId(1)
-                ->setVendorId(1)
-                ->save();
-        }
+        $this->_productFactory
+            ->create()
+            ->setProductId(2)
+            ->setVendorId(1)
+            ->save();
 
-        $product = $repository->getById(2);
-        if ($product && $product->getId()) {
-            $this->_productFactory
-                ->create()
-                ->setProductId(2)
-                ->setVendorId(1)
-                ->save();
-        }
+        $this->_productFactory
+            ->create()
+            ->setProductId(3)
+            ->setVendorId(2)
+            ->save();
 
-        $product = $repository->getById(3);
-        if ($product && $product->getId()) {
-            $this->_productFactory
-                ->create()
-                ->setProductId(3)
-                ->setVendorId(2)
-                ->save();
-        }
+        $this->_productFactory
+            ->create()
+            ->setProductId(4)
+            ->setVendorId(2)
+            ->save();
 
-        $product = $repository->getById(4);
-        if ($product && $product->getId()) {
-            $this->_productFactory
-                ->create()
-                ->setProductId(4)
-                ->setVendorId(2)
-                ->save();
-        }
+        $this->_productFactory
+            ->create()
+            ->setProductId(5)
+            ->setVendorId(3);
 
-        $product = $repository->getById(5);
-        if ($product && $product->getId()) {
-            $this->_productFactory
-                ->create()
-                ->setProductId(5)
-                ->setVendorId(3)
-                ->save();
-        }
-        $product = $repository->getById(6);
-        if ($product && $product->getId()) {
-            $this->_productFactory
-                ->create()
-                ->setProductId(6)
-                ->setVendorId(4)
-                ->save();
-        }
-        $product = $repository->getById(7);
-        if ($product && $product->getId()) {
-            $this->_productFactory
-                ->create()
-                ->setProductId(7)
-                ->setVendorId(5)
-                ->save();
-        }
+        $this->_productFactory
+            ->create()
+            ->setProductId(6)
+            ->setVendorId(4)
+            ->save();
+
+        $this->_productFactory
+            ->create()
+            ->setProductId(7)
+            ->setVendorId(5)
+            ->save();
+        $setup->endSetup();
     }
-
 }
