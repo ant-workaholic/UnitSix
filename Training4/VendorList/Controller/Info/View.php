@@ -18,7 +18,7 @@ class View extends \Magento\Framework\App\Action\Action
     protected $_pageFactory;
 
     /**
-     * @var
+     * @var \Magento\Framework\Registry
      */
     protected $_coreRegistry;
 

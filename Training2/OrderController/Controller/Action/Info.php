@@ -38,12 +38,13 @@ class Info extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
+        $json = $this->getRequest()->getParam('json');
         $orderId = $this->getRequest()->getParam('order_id');
         $layout = $this->_view->getLayout();
 
-        /** @var \Magento\Framework\View\Element\Text $block */
-        $block = $layout->createBlock('Magento\Framework\View\Element\Text');
-        if ($orderId) {
+        if ($orderId && $json) {
+            /** @var \Magento\Framework\View\Element\Text $block */
+            $block = $layout->createBlock('Magento\Framework\View\Element\Text');
             /** @var \Magento\Sales\Model\Order $order */
             $order = $this->orderFactory
                 ->create()

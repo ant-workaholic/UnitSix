@@ -3,6 +3,11 @@ namespace Training2\Specific404Page\Controller\Error;
 
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\ResponseInterface;
+
+/**
+ * Class Category
+ * @package Training2\Specific404Page\Controller\Error
+ */
 class Category extends \Magento\Framework\App\Action\Action
 {
     /**

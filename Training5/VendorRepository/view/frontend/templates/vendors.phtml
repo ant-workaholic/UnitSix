@@ -1,5 +1,5 @@
 <h1><?php echo __('Vendors test.'); ?></h1>
-<?php $assocProducts = $this->getAssocProduct(4); ?>
+<?php $assocProducts = $this->getAssocProduct(1); ?>
     <?php echo __('Associated products for vendor with 1 id.'); ?>
     <ul>
     <?php foreach ($assocProducts as $item): ?>
@@ -8,6 +8,7 @@
     </ul>
 <?php $sortedByName = $this->getSortedBy('name');?>
 <?php if($sortedByName): ?>
+    <?php echo __('Vendors, sorted by name.'); ?>
     <ul>
     <?php foreach ($sortedByName as $item): ?>
         <li><?php echo $item->getName(); ?></li>
@@ -16,6 +17,7 @@
 <?php endif; ?>
 <?php $filterByName = $this->filterByName('Adidas'); ?>
 <?php if($filterByName): ?>
+    <?php echo __('Vendors, filtered by specific name, in this case is the Adidas.'); ?>
     <ul>
     <?php foreach ($filterByName as $item): ?>
         <li><?php echo $item->getName(); ?></li>

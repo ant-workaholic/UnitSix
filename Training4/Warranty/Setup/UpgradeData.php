@@ -25,34 +25,30 @@ class UpgradeData implements  UpgradeDataInterface
         $this->eavSetupFactory = $eavSetupFactory;
     }
 
+    /**
+     * @param ModuleDataSetupInterface $setup
+     * @param ModuleContextInterface $context
+     */
     public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
         $setup->startSetup();
         $eavSetup = $this->eavSetupFactory->create(['install' => $setup]);
         if ($context->getVersion()
-            && version_compare($context->getVersion(), '0.0.2') < 0
+            && version_compare($context->getVersion(), '0.0.3') < 0
         ) {
-            /** @var \Magento\Eav\Setup\EavSetup $eavSetup */
-
-            $eavSetup->addAttribute(
+            $entityTypeId = $eavSetup->getEntityTypeId(\Magento\Catalog\Model\Product::ENTITY);
+            $attributeSetId = $eavSetup
+                ->getAttributeSetId($entityTypeId, 'Gear');
+            if (!$attributeSetId) {
+                $attributeSet = $eavSetup->addAttributeSet($entityTypeId, 'Gear');
+                $attributeSetId = $attributeSet->getId();
+            }
+            $groupId = $eavSetup->getAttributeGroupId(\Magento\Catalog\Model\Product::ENTITY, $attributeSetId, 'Product Details');
+            $eavSetup->addAttributeToGroup(
                 \Magento\Catalog\Model\Product::ENTITY,
-                'warranty',
-                [
-                    'type'                    => 'text',
-                    'label'                   => 'Warranty',
-                    'input'                   => 'textarea',
-                    'system'                  => 0,
-                    'global'                  => \Magento\Catalog\Model\ResourceModel\Eav\Attribute::SCOPE_GLOBAL,
-                    'visible'                 => true,
-                    'required'                => false,
-                    'visible_on_front'        => true,
-                    'used_in_product_listing' => true,
-                    'backend'                 => 'Training4\Warranty\Model\Attribute\Backend\Warranty',
-                    'unique'                  => false,
-                    'searchable'              => false,
-                    'user_defined'            => false,
-                    'frontend'                => 'Training4\Warranty\Model\Attribute\Frontend\Warranty'
-                ]
+                $attributeSetId,
+                $groupId,
+                'warranty'
             );
         }
         $setup->endSetup();

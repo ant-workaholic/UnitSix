@@ -46,22 +46,22 @@ class InstallData implements InstallDataInterface
             \Magento\Catalog\Model\Product::ENTITY,
             'warranty',
             [
-                'type'                    => 'text',
-                'label'                   => 'Warranty',
-                'input'                   => 'textarea',
-                'system'                  => 0,
-                'global'                  => \Magento\Catalog\Model\ResourceModel\Eav\Attribute::SCOPE_GLOBAL,
-                'visible'                 => true,
-                'required'                => false,
-                'visible_on_front'        => true,
-                'used_in_product_listing' => true,
-                'backend'                 => 'Training4\Warranty\Model\Attribute\Backend\Warranty',
-                'unique'                  => false,
-                'searchable'              => false,
-                'user_defined'            => false,
-                'frontend'                => 'Training4\Warranty\Model\Attribute\Frontend\Warranty'
+                'type'                     => 'text',
+                'label'                    => 'Warranty',
+                'input'                    => 'textarea',
+                'system'                   => 0,
+                'global'                   => \Magento\Catalog\Model\ResourceModel\Eav\Attribute::SCOPE_GLOBAL,
+                'visible'                  => true,
+                'required'                 => false,
+                'visible_on_front'         => true,
+                'used_in_product_listing'  => true,
+                'backend'                  => 'Training4\Warranty\Model\Attribute\Backend\Warranty',
+                'unique'                   => false,
+                'searchable'               => false,
+                'user_defined'             => false,
+                'frontend'                 => 'Training4\Warranty\Model\Attribute\Frontend\Warranty',
+                'is_html_allowed_on_front' => true
             ]
         );
-
     }
 }

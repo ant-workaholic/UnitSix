@@ -10,7 +10,7 @@ class View
     /**
      * Validate nickname after main review validation.
      *
-     * @param $subject
+     * @param \Magento\Review\Model\Review $subject
      * @param $result
      * @return array
      */

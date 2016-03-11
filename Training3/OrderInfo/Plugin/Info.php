@@ -3,9 +3,14 @@ namespace Training3\OrderInfo\Plugin;
 
 use Magento\Framework\View\Result\PageFactory;
 
+/**
+ * Class Info
+ * @package Training3\OrderInfo\Plugin
+ */
 class Info
 {
     const ORDER_ID = 'order_id';
+
     /**
      * @var \Magento\Framework\Registry
      */
@@ -28,6 +33,11 @@ class Info
         $this->_pageFactory = $pageFactory;
     }
 
+    /**
+     * @param $subject
+     * @param $result
+     * @return \Magento\Framework\View\Result\Page
+     */
     public function afterExecute($subject, $result)
     {
         $param = $subject->getRequest()->getParam('json');

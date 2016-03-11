@@ -4,6 +4,10 @@ namespace Training5\VendorRepository\Block;
 use Magento\Framework\View\Element\AbstractBlock;
 use Magento\Framework\View\Element\Template;
 
+/**
+ * Class Vendors
+ * @package Training5\VendorRepository\Block
+ */
 class Vendors extends \Magento\Framework\View\Element\Template
 {
     /**
@@ -109,6 +113,10 @@ class Vendors extends \Magento\Framework\View\Element\Template
         return false;
     }
 
+    /**
+     * @param $name
+     * @return bool
+     */
     public function filterByName($name)
     {
         $filters[] = $this->_filterBuilder

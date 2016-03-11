@@ -37,5 +37,4 @@ class Vendors extends \Magento\Framework\App\Action\Action
         $result = $this->_pageFactory->create();
         return $result;
     }
-
 }

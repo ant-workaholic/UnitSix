@@ -1,0 +1,9 @@
+<b><?php echo __('Sort By Vendor:'); ?></b>
+
+<?php if ($this->getCurrentDir() == 'asc'): ?>
+<a href="<?php echo $this->getFilterNameUrlDESC(); ?>" class="action sorter-action sort-asc"></a>
+<?php endif; ?>
+
+<?php if ($this->getCurrentDir() == 'desc'): ?>
+<a href="<?php echo $this->getFilterNameUrlASC(); ?>" class="action sorter-action sort-desc"></a>
+<?php endif; ?>

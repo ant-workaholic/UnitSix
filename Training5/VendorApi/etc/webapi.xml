@@ -19,8 +19,14 @@
             <resource ref="anonymous" />
         </resources>
     </route>
-    <route url="/V1/vendors/:attributeCode" method="PUT">
+    <route url="/V1/vendors/:vendorId" method="PUT">
         <service class="Training4\Vendor\Api\VendorRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    <route url="/V1/vendors/:vendorId" method="GET">
+        <service class="Training4\Vendor\Api\VendorRepositoryInterface" method="getAssociatedProductIds"/>
         <resources>
             <resource ref="anonymous" />
         </resources>

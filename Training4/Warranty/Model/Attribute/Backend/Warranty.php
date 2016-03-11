@@ -1,8 +1,10 @@
 <?php
 namespace Training4\Warranty\Model\Attribute\Backend;
 
-use Magento\Eav\Model\Entity\Attribute\Backend\AbstractBackend;
-
+/**
+ * Class Warranty
+ * @package Training4\Warranty\Model\Attribute\Backend
+ */
 class Warranty extends \Magento\Eav\Model\Entity\Attribute\Backend\AbstractBackend
 {
     /**

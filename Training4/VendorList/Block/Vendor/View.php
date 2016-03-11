@@ -4,6 +4,10 @@ namespace Training4\VendorList\Block\Vendor;
 use Magento\Framework\View\Element\AbstractBlock;
 use Magento\Framework\View\Element\Template;
 
+/**
+ * Class View
+ * @package Training4\VendorList\Block\Vendor
+ */
 class View extends \Magento\Framework\View\Element\Template
 {
 
@@ -13,17 +17,17 @@ class View extends \Magento\Framework\View\Element\Template
     protected $_repositoryFactory;
 
     /**
-     * @var
+     * @var \Magento\Framework\Api\SearchCriteriaBuilder
      */
     protected $_searchCriteriaBuilder;
 
     /**
-     * @var
+     * @var \Magento\Framework\Api\FilterBuilder
      */
     protected $_filterBuilder;
 
     /**
-     * @var
+     * @var \Magento\Catalog\Model\ProductRepositoryFactory
      */
     protected $_productRepositoryFactory;
 
